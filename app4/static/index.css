@@ -1,0 +1,36 @@
+/* static/styles.css */
+body {
+    background: linear-gradient(rgb(240, 199, 228,0.6), rgba(219, 204, 245, 0.5));
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: blue;
+    padding: 20px;
+    align-items:  center;
+    text-align: center;
+    background: linear-gradient(rgba(104, 125, 247, 0.2), rgba(71, 8, 8, 0.1));
+}
+
+/* static/index.css */
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));  /* Responsive grid */
+    gap: 100px;
+    padding: 25px;
+}
+
+.product-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+#basketButton{
+    text-align: left;
+    align-items: left;
+    display: flex;
+    height: 5vh;  /* Full viewport height */
+}

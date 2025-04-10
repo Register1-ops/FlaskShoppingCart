@@ -1,0 +1,34 @@
+/* static/styles.css */
+body {
+    background: linear-gradient(rgba(239, 121, 121, 0.5), rgba(159, 237, 198, 0.5));
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    
+    border-color: aquamarine;
+}
+
+h1 {
+    color: rgb(61, 178, 228);
+    text-align: center;
+    padding: 5px;
+    justify-content: center;
+    place-items: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;  /* Centers vertically */
+    height: 25vh;  /* Full viewport height */
+
+}
+
+#continueShopping {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: blue;
+    color: white;
+    border: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}

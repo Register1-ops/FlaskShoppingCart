@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask CSS Example</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='basket.css') }}">
+</head>
+<body>
+    <h1></h1>
+
+<h1>Shopping Basket</h1>
+<br>
+<br>
+
+{% if empty %}
+    <p>Your basket is empty!</p>
+{% else %}
+    <ul>
+        {% for item in basket_items %}
+            <li>
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.price }}</p>
+                <a href="{{ url_for('remove_from_basket', techId=item.id) }}">
+                    <button>Remove</button>
+                </a>
+            </li>
+            <br>
+            <br>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<a href="{{ url_for('galleryPage') }}">
+    <div class="button-container">
+        <button id = "continueShopping">Continue Shopping</button>
+    </div>
+</a>
+</body>
+</html>

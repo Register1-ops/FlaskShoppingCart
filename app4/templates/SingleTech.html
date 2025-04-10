@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ technology.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+</head>
+<body>
+    <a href="{{ url_for('galleryPage') }}">← Back to List</a>
+    <h1>{{ technology.name }}</h1>
+    <img src="{{ url_for('static', filename=technology.image) }}" alt="{{ technology.name }}" width="200">
+    <p><strong>Price:</strong> {{ technology.price }}</p>
+    <p>{{ technology.description }}</p>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <label for="quantity">{{ form.quantity.label }}</label>
+        {{ form.quantity }}
+        {{ form.submit }}
+    </form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Added to Basket</title>
+</head>
+<body>
+    <a href="{{ url_for('galleryPage') }}">← Back to List</a>
+    <h1>{{ technology.name }}</h1>
+    <img src="{{ url_for('static', filename=technology.image) }}" alt="{{ technology.name }}" width="200">
+    <p><strong>Price:</strong> {{ technology.price }}</p>
+    <p>{{ technology.description }}</p>
+    <p>You added {{ quantity }} {{ product }}(s) to the basket.</p>
+</body>
+</html>

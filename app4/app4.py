@@ -74,6 +74,28 @@ def remove_from_basket(techId):
         session.modified = True  # Marking session as modified to save changes
     return redirect(url_for('basketPage'))  # Redirecting to the basket page
 
+
+@app.route('/individualProduct/<int:techId>')
+def individualProductPage(techId):
+    conn = sqlite3.connect('products.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM products WHERE id=?', (techId,))
+    row = cursor.fetchone()
+    conn.close()
+
+    technology = {
+    'id': row[0],
+    'name': row[1],
+    'price': row[2],
+    'description': row[3],
+    'image': row[4],
+    'environmentScore': row[5]  
+    }
+
+    return render_template('individualProduct.html', technology = row)
+
+
+
 # Running the Flask app
 if __name__ == '__main__':
     app.run(debug=True)  # Running the app in debug mode for development

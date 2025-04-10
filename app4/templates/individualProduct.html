@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ technology[1] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+</head>
+<body>
+    <a href="{{ url_for('galleryPage') }}">← Back to List</a>
+    <h1>{{ technology[1] }}</h1>
+    <img src="{{ url_for('static', filename=technology[4]) }}" alt="{{ technology[1] }}" width="350">
+    <p><strong>Price:</strong> {{ technology[2] }}</p>
+    <p>{{ technology[3] }}</p>
+    <p>Environmental score: {{ technology[5] }}</p>
+    <a href="{{ url_for('add_to_basket', techId=technology[0]) }}">
+        <button>Add to Basket</button>
+    </a>
+</body>
+</html>

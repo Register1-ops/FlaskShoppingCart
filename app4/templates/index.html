@@ -14,7 +14,8 @@
         <h2>{{ tech.name }}</h2>
         <p>{{ tech.price }}</p>
         <p>{{ tech.description }}</p>
-        <img src="{{ url_for('static', filename=tech.image) }}" alt="{{ url_for('static', filename=tech.image) }}" width="100">
+        <a href="{{ url_for('individualProductPage', techId=tech.id) }}"> <img src="{{ url_for('static', filename=tech.image) }}" alt="{{ url_for('static', filename=tech.image) }}" width="100"></a> 
+        <p>Environmental score: {{ tech.environtmentalScore }}</p>
         <br>
         <a href="{{ url_for('add_to_basket', techId=tech.id) }}">
             <button>Add to Basket</button>

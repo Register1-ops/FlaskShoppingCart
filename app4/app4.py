@@ -43,22 +43,6 @@ def galleryPage():
     technologies = get_products()  # Fetching all products from the database
     return render_template('index.html', technologies=technologies)  # Rendering the homepage template with products
 
-
-# Route for displaying a single product
-#def singleProductPage(techId):
-#    techId += 1  # Incrementing the ID (possible bug as IDs start from 1)
-#    technology = get_product_by_id(techId)  # Fetching product details
-#    if not technology:
-#        return "Product not found", 404  # Returning a 404 error if product not found
-
-#    form = OpinionForm()  # Creating an instance of the form
-#    if form.validate_on_submit():  # Checking if the form is submitted and valid
-#        quantity = form.quantity.data  # Getting the user input
-#        return render_template('SingleTechOpinion.html', technology=technology, product=technology["name"], quantity=quantity)  # Rendering opinion page
-
-#    return render_template('SingleTech.html', technology=technology, form=form)  # Rendering product page with form
-
-
 # Route to add items to the shopping basket
 @app.route('/add_to_basket/<int:techId>')
 def add_to_basket(techId):

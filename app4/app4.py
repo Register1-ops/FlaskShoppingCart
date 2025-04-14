@@ -13,11 +13,11 @@ app.config['SECRET_KEY'] = "top secret password don't tell anyone this"  # Setti
 def get_products():
     conn = sqlite3.connect('products.db')  # Connecting to the database
     cursor = conn.cursor()  # Creating a cursor object to execute SQL queries
-    cursor.execute("SELECT id, name, price, description, image FROM products")  # Querying all products
+    cursor.execute("SELECT id, name, price, description, image, environmentScore FROM products")  # Querying all products
     
     # Fetching all results and formatting them as dictionaries
     products = [
-        {"id": row[0], "name": row[1], "price": row[2], "description": row[3], "image": row[4]}
+        {"id": row[0], "name": row[1], "price": row[2], "description": row[3], "image": row[4], "environmentScore": row[5]}
         for row in cursor.fetchall()
     ]
     conn.close()  # Closing the database connection
@@ -27,13 +27,13 @@ def get_products():
 def get_product_by_id(tech_id):
     conn = sqlite3.connect('products.db')  # Connecting to the database
     cursor = conn.cursor()  # Creating a cursor object
-    cursor.execute("SELECT id, name, price, description, image FROM products WHERE id = ?", (tech_id,))  # Querying a specific product
+    cursor.execute("SELECT id, name, price, description, image, environmentScore FROM products WHERE id = ?", (tech_id,))  # Querying a specific product
     row = cursor.fetchone()  # Fetching the result
     conn.close()  # Closing the connection
     
     # If a product exists, return it as a dictionary
     if row:
-        return {"id": row[0], "name": row[1], "price": row[2], "description": row[3], "image": row[4]}
+        return {"id": row[0], "name": row[1], "price": row[2], "description": row[3], "image": row[4], "environmentScore": row[5]}
     return None  # Return None if product not found
 
 
@@ -61,12 +61,14 @@ def add_to_basket(techId):
 @app.route('/basket')
 def basketPage():
     if 'basket' not in session or len(session['basket']) == 0:
-        return render_template('basket.html', basket_items=[], empty=True)  # Rendering empty basket page
+        return render_template('basket.html', basket_items=[], empty=True, itemTotal = 0.00, environmentScore = environmentScoreTotal)  # Rendering empty basket page
 
     basket_items = [get_product_by_id(techId) for techId in session['basket']]  # Fetching product details for items in basket
-    return render_template('basket.html', basket_items=basket_items, empty=False)  # Rendering basket page with items
+    itemTotal = round(sum(float(item['price'][1:]) for item in basket_items), 2)
+    environmentScoreTotal = sum(item['environmentScore'] for item in basket_items)
+    return render_template('basket.html', basket_items=basket_items, empty=False, itemTotal = itemTotal, environmentScore = environmentScoreTotal)  # Rendering basket page with items
 
-# Route to remove items from the basket
+# Route to remove items from the baske
 @app.route('/remove_from_basket/<int:techId>')
 def remove_from_basket(techId):
     if 'basket' in session and techId in session['basket']:
@@ -93,6 +95,12 @@ def individualProductPage(techId):
     }
 
     return render_template('individualProduct.html', technology = row)
+
+
+@app.route('/paymentPage')
+def paymentPageFunction():
+
+    return render_template('paymentPage.html')
 
 
 

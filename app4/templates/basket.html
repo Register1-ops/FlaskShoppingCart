@@ -20,17 +20,23 @@
         {% for item in basket_items %}
             <li>
                 <h3>{{ item.name }}</h3>
-                <p>{{ item.price }}</p>
+                <p>Price: {{ item.price }}</p>
+                <p>Environment score: {{ item.environmentScore }}</p>
                 <a href="{{ url_for('remove_from_basket', techId=item.id) }}">
                     <button>Remove</button>
                 </a>
+                
             </li>
             <br>
             <br>
         {% endfor %}
     </ul>
 {% endif %}
-
+<a href="{{ url_for('paymentPageFunction') }}">
+    <button>Payment page</button>
+</a>
+<p><strong>Total: </strong> £ {{ itemTotal }}</p>
+<p><strong>Environment score: </strong>{{ environmentScore }}</p>
 <a href="{{ url_for('galleryPage') }}">
     <div class="button-container">
         <button id = "continueShopping">Continue Shopping</button>

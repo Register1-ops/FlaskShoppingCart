@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session  # Importing necessary Flask modules
+from flask import Flask, flash, render_template, request, redirect, url_for, session  # Importing necessary Flask modules
 from flask_wtf import FlaskForm  # Importing Flask-WTF for form handling
 from wtforms import StringField, SubmitField  # Importing form fields from WTForms
 from wtforms.validators import DataRequired, Length  # Importing validators for form validation
@@ -61,7 +61,7 @@ def add_to_basket(techId):
 @app.route('/basket')
 def basketPage():
     if 'basket' not in session or len(session['basket']) == 0:
-        return render_template('basket.html', basket_items=[], empty=True, itemTotal = 0.00, environmentScore = environmentScoreTotal)  # Rendering empty basket page
+        return render_template('basket.html', basket_items=[], empty=True, itemTotal = 0.00, environmentScore = 0)  # Rendering empty basket page
 
     basket_items = [get_product_by_id(techId) for techId in session['basket']]  # Fetching product details for items in basket
     itemTotal = round(sum(float(item['price'][1:]) for item in basket_items), 2)
@@ -99,8 +99,36 @@ def individualProductPage(techId):
 
 @app.route('/paymentPage')
 def paymentPageFunction():
-
     return render_template('paymentPage.html')
+
+
+@app.route("/checkout", methods=["GET", "POST"])
+def checkout():
+    name = request.form.get("name_on_card", "")
+    card_number = request.form.get("card_number", "").replace(" ", "").replace("-", "")
+    expiry = request.form.get("expiry", "")
+    cvv = request.form.get("cvv", "")
+    address = request.form.get("billing_address", "")
+
+    # Basic validation
+    errors = []
+
+    if not card_number.isdigit() or len(card_number) != 16:
+        errors.append("Card number must be 16 digits.")
+
+    if not cvv.isdigit() or len(cvv) != 3:
+        errors.append("CVV must be 3 digits.")
+
+    if not name or not expiry or not address:
+        errors.append("All fields must be filled.")
+
+    if errors:
+        for error in errors:
+            flash(error)
+        return redirect(url_for("paymentPageFunction"))
+
+    return render_template('paymentAcceptedPage.html' )
+
 
 
 

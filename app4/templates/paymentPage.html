@@ -8,6 +8,41 @@
 </head>
 <body>
     <h1>Payment page</h1>
+    <!-- templates/payment.html -->
+<form action="/checkout" method="POST">
+    <label>Name on Card:</label><br>
+    <input type="text" name="name_on_card" required><br><br>
+  
+    <label>Card Number:</label><br>
+    <input type="text" name="card_number" required><br><br>
+  
+    <label>Expiry Date (MM/YY):</label><br>
+    <input type="text" name="expiry" required><br><br>
+  
+    <label>CVV:</label><br>
+    <input type="password" name="cvv" required><br><br>
+  
+    <label>Billing Address:</label><br>
+    <input type="text" name="billing_address" required><br><br>
+
+    <input type="submit" value="Submit Payment">
+  </form>
+
+<a href="{{ url_for('galleryPage') }}">
+    <button>Go back to shop</button>
+</a>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+  
 
 </body>
 </html>

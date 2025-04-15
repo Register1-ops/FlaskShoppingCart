@@ -15,11 +15,11 @@ app.config['SECRET_KEY'] = "top secret password don't tell anyone this"  # Setti
 def get_products():
     conn = sqlite3.connect('products.db')  # Connecting to the database
     cursor = conn.cursor()  # Creating a cursor object to execute SQL queries
-    cursor.execute("SELECT id, name, price, description, image, environmentScore FROM products")  # Querying all products
+    cursor.execute("SELECT id, name, price, short_description, long_description, image, environmentScore FROM products")  # Querying all products
     
     # Fetching all results and formatting them as dictionaries
     products = [
-        {"id": row[0], "name": row[1], "price": row[2], "description": row[3], "image": row[4], "environmentScore": row[5]}
+        {"id": row[0], "name": row[1], "price": row[2], "short_description": row[3], "long_description": row[4], "image": row[5], "environmentScore": row[6]}
         for row in cursor.fetchall()
     ]
     conn.close()  # Closing the database connection
@@ -29,13 +29,13 @@ def get_products():
 def get_product_by_id(tech_id):
     conn = sqlite3.connect('products.db')  # Connecting to the database
     cursor = conn.cursor()  # Creating a cursor object
-    cursor.execute("SELECT id, name, price, description, image, environmentScore FROM products WHERE id = ?", (tech_id,))  # Querying a specific product
+    cursor.execute("SELECT id, name, price, short_description, long_description, image, environmentScore FROM products WHERE id = ?", (tech_id,))  # Querying a specific product
     row = cursor.fetchone()  # Fetching the result
     conn.close()  # Closing the connection
     
     # If a product exists, return it as a dictionary
     if row:
-        return {"id": row[0], "name": row[1], "price": row[2], "description": row[3], "image": row[4], "environmentScore": row[5]}
+        return {"id": row[0], "name": row[1], "price": row[2], "short_description": row[3], "long_description": row[4], "image": row[5], "environmentScore": row[6]}
     return None  # Return None if product not found
 
 

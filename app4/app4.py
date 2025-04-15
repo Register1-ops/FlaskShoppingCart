@@ -4,6 +4,8 @@ from wtforms import StringField, SubmitField  # Importing form fields from WTFor
 from wtforms.validators import DataRequired, Length  # Importing validators for form validation
 from flask_bootstrap import Bootstrap  # Importing Bootstrap for styling
 import sqlite3  # Importing SQLite for database operations
+from datetime import datetime
+import re
 
 app = Flask(__name__)  # Creating a Flask web application instance
 bootstrap = Bootstrap(app)  # Initializing Flask-Bootstrap for UI styling
@@ -101,14 +103,17 @@ def individualProductPage(techId):
 def paymentPageFunction():
     return render_template('paymentPage.html')
 
-
+pattern = re.compile(r'^[A-Za-z]{1,2}\d{1,2}[A-Za-z]?\s?\d[A-Za-z]{2}$')
 @app.route("/checkout", methods=["GET", "POST"])
 def checkout():
     name = request.form.get("name_on_card", "")
     card_number = request.form.get("card_number", "").replace(" ", "").replace("-", "")
     expiry = request.form.get("expiry", "")
     cvv = request.form.get("cvv", "")
-    address = request.form.get("billing_address", "")
+    postcode = request.form.get("postcode", "")
+    country = request.form.get("countr", "")
+    city = request.form.get("city", "")
+    number = request.form.get("house/flat number", "")
 
     # Basic validation
     errors = []
@@ -119,15 +124,63 @@ def checkout():
     if not cvv.isdigit() or len(cvv) != 3:
         errors.append("CVV must be 3 digits.")
 
-    if not name or not expiry or not address:
+    if not name and not expiry and not postcode and not country and not city and not number:
         errors.append("All fields must be filled.")
+   
+    expiryDate = checkExpiryDate(expiry)
+    if expiryDate == False:
+        errors.append("Error with expiry date (MM/YY)")
+
+    if not pattern.match(postcode):
+        errors.append("Postcode is incorrect")
+
+    if not number.isdigit() or int(number) < 0:
+        errors.append("House/flat number is incorrect")
 
     if errors:
         for error in errors:
             flash(error)
-        return redirect(url_for("paymentPageFunction"))
+        return redirect(url_for("paymentPageFunction", postcode = postcode))
 
     return render_template('paymentAcceptedPage.html' )
+
+
+def checkExpiryDate(expiry):
+    try:
+        # Check format MM/YY
+        if '/' not in expiry:
+            return False
+        
+        parts = expiry.split('/')
+        if len(parts) != 2:
+            return False
+
+        mm, yy = parts
+
+        # Convert to int
+        mm = int(mm)
+        yy = int(yy)
+
+        # Get current month/year
+        now = datetime.now()
+        current_year = now.year % 100  # Get last 2 digits of year
+        current_month = now.month
+
+        # Year range check
+        if yy < current_year or yy > (current_year + 10):
+            return False
+
+        # Month range check
+        if mm < 1 or mm > 12:
+            return False
+
+        # If same year, month should be current or future
+        if yy == current_year and mm < current_month:
+            return False
+
+        return True
+    except ValueError:
+        return False
 
 
 

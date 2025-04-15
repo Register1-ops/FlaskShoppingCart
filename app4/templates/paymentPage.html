@@ -23,7 +23,11 @@
     <input type="password" name="cvv" required><br><br>
   
     <label>Billing Address:</label><br>
-    <input type="text" name="billing_address" required><br><br>
+    <input type="text" name="postcode" placeholder="Postcode" value = "{{ postcode }}"required><br><br>
+    <input type="text" name="country" placeholder="country" required><br><br>
+    <input type="text" name="city" placeholder="city" required><br><br>
+    <input type="text" name="house/flat number" placeholder="house/flat number" required><br><br>
+
 
     <input type="submit" value="Submit Payment">
   </form>

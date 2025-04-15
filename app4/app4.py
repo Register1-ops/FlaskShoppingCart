@@ -182,6 +182,17 @@ def checkExpiryDate(expiry):
     except ValueError:
         return False
 
+@app.route('/search')
+def search():
+    query = request.args.get('q', '')
+    conn = sqlite3.connect('products.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM products WHERE name LIKE ? OR short_description LIKE ?", 
+                   ('%' + query + '%', '%' + query + '%'))
+    items = cursor.fetchall()
+    conn.close()
+    return render_template('index.html', items=items, search_query=query)
+
 
 
 

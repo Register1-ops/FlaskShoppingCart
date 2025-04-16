@@ -7,16 +7,21 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-    <h1>The Shop <a href="{{url_for('basketPage')}}"> <button id = "basketButton">Go to basket</button></a></h1>
 
+<div class = headPart>
+    <h1>The Shop </h1>
 
-<div style="display: flex; justify-content: space-between; align-items: center;">
-    <form method="GET" action="{{ url_for('search') }}">
-        <input type="text" name="q" placeholder="Search..." style="padding: 5px;">
-        <button type="submit">Search</button>
-    </form>
+    <a href="{{url_for('basketPage')}}"> 
+        <button id = "basketButton">Go to basket</button>
+    </a>
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <form method="GET" action="{{ url_for('search') }}">
+            <input type="text" name="q" placeholder="Search..." style="padding: 5px;">
+            <button type="submit">Search</button>
+        </form>
+    </div>
 </div>
-
 
 {% if search_query %}
   <p>Showing results for "<strong>{{ search_query }}</strong>":</p>
@@ -24,37 +29,36 @@
 
 <div class="product-container">
     {% for item in items %}
-      <div class="product">
+    <div class="product">
         <h2>{{ item[1] }}</h2>
         <p>{{ item[2] }}</p>
         <p>{{ item[3] }}</p>
-        <img src="{{ url_for('static', filename=item[5]) }}" alt="{{ url_for('static', filename=item[5]) }}" width="100">
+        <img src="{{ url_for('static', filename=item[5]) }}" alt="{{ item[1] }}" width="100">
         <p>Environment score: {{ item[6] }}</p>
-        <!-- Add image or price if needed -->
-      </div>
+        <a href="{{ url_for('add_to_basket', techId=item[0]) }}">
+            <button>Add to Basket</button>
+        </a>
+    </div>
     {% endfor %}
-  </div>
-  
-    
-{% for tech in technologies %}
-    <div>
+</div>
+
+<div class="product-container">
+    {% for tech in technologies %}
+    <div class="product">
         <h2>{{ tech.name }}</h2>
         <p>{{ tech.price }}</p>
         <p>{{ tech.short_description }}</p>
-        <a href="{{ url_for('individualProductPage', techId=tech.id) }}"> <img src="{{ url_for('static', filename=tech.image) }}" alt="{{ url_for('static', filename=tech.image) }}" width="100"></a> 
+        <a href="{{ url_for('individualProductPage', techId=tech.id) }}">
+            <img src="{{ url_for('static', filename=tech.image) }}" alt="{{ tech.name }}" width="100">
+        </a>
         <p>Environmental score: {{ tech.environmentScore }}</p>
-        <br>
         <a href="{{ url_for('add_to_basket', techId=tech.id) }}">
             <button>Add to Basket</button>
         </a>
-        <br>
-        <br>
-        <br>
-        <br>
     </div>
-{% endfor %}
-
+    {% endfor %}
 </div>
+
 
 </body>
 </html>

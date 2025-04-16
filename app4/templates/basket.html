@@ -31,10 +31,13 @@
             <br>
         {% endfor %}
     </ul>
+    <a href="{{ url_for('paymentPageFunction') }}">
+        <button>Payment page</button>
+    </a>
 {% endif %}
-<a href="{{ url_for('paymentPageFunction') }}">
-    <button>Payment page</button>
-</a>
+
+
+
 <p><strong>Total: </strong> £ {{ itemTotal }}</p>
 <p><strong>Environment score: </strong>{{ environmentScore }}</p>
 <a href="{{ url_for('galleryPage') }}">

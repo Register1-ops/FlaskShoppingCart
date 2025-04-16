@@ -57,7 +57,7 @@ def add_to_basket(techId):
 
     session['basket'].append(techId)  # Adding product ID to session
     session.modified = True  # Marking session as modified to save changes
-    return redirect(url_for('basketPage'))  # Redirecting to the basket page
+    return redirect(url_for('galleryPage'))  # Redirecting to the basket page
 
 # Route to view the shopping basket
 @app.route('/basket')

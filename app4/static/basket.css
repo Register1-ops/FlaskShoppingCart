@@ -2,8 +2,8 @@
 body {
     background: linear-gradient(rgba(239, 121, 121, 0.5), rgba(159, 237, 198, 0.5));
     font-family: Arial, sans-serif;
-    height: 100vh;
-    
+
+    height: 100vh; 
     border-color: aquamarine;
 }
 
@@ -32,3 +32,4 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
 }
+

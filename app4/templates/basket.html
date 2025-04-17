@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask CSS Example</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='basket.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-    <h1></h1>
-
 <h1>Shopping Basket</h1>
 <br>
 <br>
 
+<div class = basketText>
 {% if empty %}
     <p>Your basket is empty!</p>
 {% else %}
     <ul>
-        {% for item in basket_items %}
+        {% for item in unique_items %}
             <li>
-                <h3>{{ item.name }}</h3>
+                <p><strong>{{ item.name }}  x {{ item_counts[item.name]}}</strong></p>
                 <p>Price: {{ item.price }}</p>
                 <p>Environment score: {{ item.environmentScore }}</p>
                 <a href="{{ url_for('remove_from_basket', techId=item.id) }}">
@@ -35,11 +34,11 @@
         <button>Payment page</button>
     </a>
 {% endif %}
-
+</div>
 
 
 <p><strong>Total: </strong> £ {{ itemTotal }}</p>
-<p><strong>Environment score: </strong>{{ environmentScore }}</p>
+<p><strong>Environment score: </strong>{{ environmentScore }} kg CO2</p>
 <a href="{{ url_for('galleryPage') }}">
     <div class="button-container">
         <button id = "continueShopping">Continue Shopping</button>

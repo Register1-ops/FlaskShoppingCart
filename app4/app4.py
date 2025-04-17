@@ -1,3 +1,4 @@
+from collections import Counter
 from flask import Flask, flash, render_template, request, redirect, url_for, session  # Importing necessary Flask modules
 from flask_wtf import FlaskForm  # Importing Flask-WTF for form handling
 from wtforms import StringField, SubmitField  # Importing form fields from WTForms
@@ -66,9 +67,15 @@ def basketPage():
         return render_template('basket.html', basket_items=[], empty=True, itemTotal = 0.00, environmentScore = 0)  # Rendering empty basket page
 
     basket_items = [get_product_by_id(techId) for techId in session['basket']]  # Fetching product details for items in basket
+    
+    # basket_items is a list of items (each with .name, .price, etc.)
+    item_counts = Counter([item['name'] for item in basket_items])
+    
+    # Deduplicate list of items by name (or use item.id if available)
+    unique_items = {item['name']: item for item in basket_items}.values()
     itemTotal = round(sum(float(item['price'][1:]) for item in basket_items), 2)
     environmentScoreTotal = sum(item['environmentScore'] for item in basket_items)
-    return render_template('basket.html', basket_items=basket_items, empty=False, itemTotal = itemTotal, environmentScore = environmentScoreTotal)  # Rendering basket page with items
+    return render_template('basket.html', basket_items=basket_items, empty=False, itemTotal = itemTotal, environmentScore = environmentScoreTotal, item_counts = item_counts, unique_items = unique_items)  # Rendering basket page with items
 
 # Route to remove items from the baske
 @app.route('/remove_from_basket/<int:techId>')

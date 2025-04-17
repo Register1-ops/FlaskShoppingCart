@@ -8,14 +8,30 @@
 
 </head>
 <body>
+<div class = individualText>
     <a href="{{ url_for('galleryPage') }}">← Back to List</a>
     <h1>{{ technology[1] }}</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <img src="{{ url_for('static', filename=technology[5]) }}" alt="{{ technology[1] }}" width="350">
     <p><strong>Price:</strong> {{ technology[2] }}</p>
+    <br>
+    <br>
     <p>{{ technology[4] }}</p>
-    <p>Environmental score: {{ technology[6] }} kg</p>
+    <br>
+    <br>
+    <p>Environmental score: {{ technology[6] }} kg CO2</p>
+    <br>
+    <br>
     <a href="{{ url_for('add_to_basket', techId=technology[0]) }}">
         <button>Add to Basket</button>
     </a>
+</div>
 </body>
 </html>

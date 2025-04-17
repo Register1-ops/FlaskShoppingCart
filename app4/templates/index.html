@@ -9,7 +9,7 @@
 <body>
 
 <div class = headPart>
-    <h1>The Shop </h1>
+    <h1>Music Shop </h1>
 
     <a href="{{url_for('basketPage')}}"> 
         <button id = "basketButton">Go to basket</button>
@@ -33,8 +33,9 @@
         <h2>{{ item[1] }}</h2>
         <p>{{ item[2] }}</p>
         <p>{{ item[3] }}</p>
-        <img src="{{ url_for('static', filename=item[5]) }}" alt="{{ item[1] }}" width="100">
-        <p>Environment score: {{ item[6] }}</p>
+        <a href="{{ url_for('individualProductPage', techId=item[0]) }}">
+            <img src="{{ url_for('static', filename=item[5]) }}" alt="{{ item[1] }}" width="100">
+        </a><p>Environment score: {{ item[6] }} kg CO2</p>
         <a href="{{ url_for('add_to_basket', techId=item[0]) }}">
             <button>Add to Basket</button>
         </a>
@@ -51,7 +52,7 @@
         <a href="{{ url_for('individualProductPage', techId=tech.id) }}">
             <img src="{{ url_for('static', filename=tech.image) }}" alt="{{ tech.name }}" width="100">
         </a>
-        <p>Environmental score: {{ tech.environmentScore }}</p>
+        <p>Environmental score: {{ tech.environmentScore }}  kg CO2</p>
         <a href="{{ url_for('add_to_basket', techId=tech.id) }}">
             <button>Add to Basket</button>
         </a>

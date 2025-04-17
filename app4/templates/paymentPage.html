@@ -4,37 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask CSS Example</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='basket.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
     <h1>Payment page</h1>
     <!-- templates/payment.html -->
-<form action="/checkout" method="POST">
-    <label>Name on Card:</label><br>
-    <input type="text" name="name_on_card" required><br><br>
-  
-    <label>Card Number:</label><br>
-    <input type="text" name="card_number" required><br><br>
-  
-    <label>Expiry Date (MM/YY):</label><br>
-    <input type="text" name="expiry" required><br><br>
-  
-    <label>CVV:</label><br>
-    <input type="password" name="cvv" required><br><br>
-  
-    <label>Billing Address:</label><br>
-    <input type="text" name="postcode" placeholder="Postcode" value = "{{ postcode }}"required><br><br>
-    <input type="text" name="country" placeholder="country" required><br><br>
-    <input type="text" name="city" placeholder="city" required><br><br>
-    <input type="text" name="house/flat number" placeholder="house/flat number" required><br><br>
+<div class = "paymentPage">
+    <form action="/checkout" method="POST">
+        <label>Name on Card:</label><br>
+        <input type="text" name="name_on_card" required><br><br>
+    
+        <label>Card Number:</label><br>
+        <input type="text" name="card_number" required><br><br>
+    
+        <label>Expiry Date (MM/YY):</label><br>
+        <input type="text" name="expiry" required><br><br>
+    
+        <label>CVV:</label><br>
+        <input type="password" name="cvv" required><br><br>
+    
+        <label>Billing Address:</label><br>
+        <input type="text" name="postcode" placeholder="Postcode" value = "{{ postcode }}"required><br><br>
+        <input type="text" name="country" placeholder="country" required><br><br>
+        <input type="text" name="city" placeholder="city" required><br><br>
+        <input type="text" name="house/flat number" placeholder="house/flat number" required><br><br>
 
 
-    <input type="submit" value="Submit Payment">
-  </form>
+        <input type="submit" value="Submit Payment">
+    </form>
 
-<a href="{{ url_for('galleryPage') }}">
-    <button>Go back to shop</button>
-</a>
+    <a href="{{ url_for('galleryPage') }}">
+        <button>Go back to shop</button>
+    </a>
+    
+</div>
+
 
   {% with messages = get_flashed_messages() %}
   {% if messages %}

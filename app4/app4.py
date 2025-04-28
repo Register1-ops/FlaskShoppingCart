@@ -7,6 +7,7 @@ from flask_bootstrap import Bootstrap  # Importing Bootstrap for styling
 import sqlite3  # Importing SQLite for database operations
 from datetime import datetime
 import re
+import time 
 
 app = Flask(__name__)  # Creating a Flask web application instance
 bootstrap = Bootstrap(app)  # Initializing Flask-Bootstrap for UI styling
@@ -118,9 +119,9 @@ def checkout():
     expiry = request.form.get("expiry", "")
     cvv = request.form.get("cvv", "")
     postcode = request.form.get("postcode", "")
-    country = request.form.get("countr", "")
+    country = request.form.get("country", "")
     city = request.form.get("city", "")
-    number = request.form.get("house/flat number", "")
+    number = request.form.get("houseFlat_number", "")
 
     # Basic validation
     errors = []
@@ -147,9 +148,16 @@ def checkout():
     if errors:
         for error in errors:
             flash(error)
-        return redirect(url_for("paymentPageFunction", postcode = postcode))
+        return render_template('paymentPage.html',  name_on_card=name,
+                card_number=card_number,
+                expiry=expiry,
+                cvv=cvv,
+                postcode=postcode,
+                country=country,
+                city=city,
+                houseFlat_number=number )
 
-    return render_template('paymentAcceptedPage.html' )
+    return render_template('paymentAcceptedPage.html')
 
 
 def checkExpiryDate(expiry):

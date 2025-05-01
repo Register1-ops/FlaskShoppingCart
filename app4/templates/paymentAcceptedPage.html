@@ -1,19 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask CSS Example</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='basket.css') }}">
-    
+<!DOCTYPE html> <!-- Declare this file as HTML5 -->
+<html lang="en"> <!-- Set document language to English -->
+<head> <!-- Head section: metadata & styles -->
+    <meta charset="UTF-8"> <!-- Use UTF-8 character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensure proper scaling on mobile -->
+    <title>Payment Accepted</title> <!-- Browser tab title -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='basket.css') }}"> <!-- Link to external CSS -->
 </head>
-<body>
-    <h1>Payment Accepted</h1>
+<body> <!-- Start of page content -->
+
+    <div class="container"> <!-- Centered white box for content -->
+
+        <h1>Payment Accepted</h1> <!-- Main confirmation heading -->
+
+        <div class="loading-dots"> <!-- Animated dots container -->
+            <span class="dot">.</span> <!-- Dot 1 -->
+            <span class="dot">.</span> <!-- Dot 2 -->
+            <span class="dot">.</span> <!-- Dot 3 -->
+        </div>
+
+        <p>Redirecting you to the home page...</p> <!-- Subtext -->
+
+    </div> <!-- End of container -->
+
     <script>
-        setTimeout(function(){
-            window.location.href = "{{ url_for('static', filename= 'index.html') }}";
-        }, 3000); // 3000 ms = 3 seconds
+        setTimeout(function(){              // Wait before redirecting
+            window.location.href = "{{ url_for('galleryPage') }}";  // Go to gallery page
+        }, 3000);                            // 3000ms = 3 seconds
     </script>
-    
-</body>
-</html>
+
+</body> <!-- End of body -->
+</html> <!-- End of document -->

@@ -1,35 +1,73 @@
-/* static/styles.css */
+/* Apply a full-screen diagonal rainbow gradient */
 body {
-    background: linear-gradient(rgba(239, 121, 121, 0.5), rgba(159, 237, 198, 0.5));
-    font-family: Arial, sans-serif;
-
-    height: 100vh; 
-    border-color: aquamarine;
+  margin: 0;                                       /* Remove default page margins */
+  padding: 0;                                      /* Remove default page padding */
+  min-height: 100vh;                               /* Ensure body is at least viewport height */
+  font-family: 'Poppins', Arial, sans-serif;       /* Modern, clean font */
+  display: flex;                                   /* Use flex to center content */
+  justify-content: center;                        /* Center horizontally */
+  align-items: center;                            /* Center vertically */
+  background: linear-gradient(
+      135deg,                                      /* Angle of gradient */
+      #ff9a9e 0%,                                 /* Soft pink start */
+      #fad0c4 25%,                                /* Peach */
+      #fad0c4 25%,                                /* repeat to sharpen band */
+      #fbc2eb 50%,                                /* Lavender */
+      #a1c4fd 75%,                                /* Light blue */
+      #c2e9fb 100%                               /* Sky blue end */
+  );
 }
 
+/* White, semi-transparent box to hold content */
+.container {
+  background: rgba(255, 255, 255, 0.85);           /* Slightly see-through white */
+  padding: 40px 60px;                             /* Space inside the box */
+  border-radius: 16px;                            /* Rounded corners */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);       /* Soft drop shadow */
+  text-align: center;                             /* Center text */
+  max-width: 90%;                                 /* Responsive width */
+}
+
+/* Large green heading */
 h1 {
-    color: rgb(61, 178, 228);
-    text-align: center;
-    padding: 5px;
-    justify-content: center;
-    place-items: center;
+  margin: 0 0 24px;                               /* Remove default top margin, 24px bottom */
+  font-size: 3rem;                                /* Scales with root font size */
+  color: #27ae60;                                 /* Fresh “success” green */
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;  /* Centers horizontally */
-    align-items: center;  /* Centers vertically */
-    height: 25vh;  /* Full viewport height */
-
+/* Container for the three blinking dots */
+.loading-dots {
+  font-size: 4rem;                                /* Big dots */
+  color: #2980b9;                                 /* Deep blue for contrast */
+  margin-bottom: 20px;                            /* Space under dots */
 }
 
-#continueShopping {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: blue;
-    color: white;
-    border: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+/* Individual dot styling & animation */
+.dot {
+  display: inline-block;                          /* Sit side by side */
+  animation: blink 1.4s infinite both;            /* Blink animation, loop forever */
 }
 
+/* Stagger the second dot */
+.dot:nth-child(2) {
+  animation-delay: 0.2s;                          /* Start 0.2s later */
+}
+
+/* Stagger the third dot */
+.dot:nth-child(3) {
+  animation-delay: 0.4s;                          /* Start 0.4s later */
+}
+
+/* Keyframes for blinking effect */
+@keyframes blink {
+  0%   { opacity: 0; }                            /* Invisible */
+  50%  { opacity: 1; }                            /* Visible mid-cycle */
+  100% { opacity: 0; }                            /* Invisible again */
+}
+
+/* Subtext under the dots */
+p {
+  margin: 0;                                      /* Remove default margins */
+  font-size: 1.25rem;                             /* Slightly larger than normal text */
+  color: #2c3e50;                                 /* Dark slate for readability */
+}

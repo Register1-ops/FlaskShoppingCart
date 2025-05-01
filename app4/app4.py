@@ -11,7 +11,9 @@ import time
 
 app = Flask(__name__)  # Creating a Flask web application instance
 bootstrap = Bootstrap(app)  # Initializing Flask-Bootstrap for UI styling
-app.config['SECRET_KEY'] = "top secret password don't tell anyone this"  # Setting a secret key for session security
+app.config['SECRET_KEY'] = "secret_key"  # Setting a secret key for session security
+
+
 
 # Function to fetch all products from the SQLite database
 def get_products():
@@ -45,6 +47,16 @@ def get_product_by_id(tech_id):
 @app.route('/')
 def galleryPage():
     technologies = get_products()  # Fetching all products from the database
+    sort_by = request.args.get('sort', 'name')  # Default sort = name
+    technologies = get_products()  # Fetch all products from DB
+
+    if sort_by == 'price':
+        technologies.sort(key=lambda x: float(x['price'][1:]))  # Remove £ and sort
+    elif sort_by == 'impact':
+        technologies.sort(key=lambda x: x['environmentScore'])
+    else:
+        technologies.sort(key=lambda x: x['name'].lower())  # Default: name
+    
     return render_template('index.html', technologies=technologies)  # Rendering the homepage template with products
 
 # Route to add items to the shopping basket
@@ -156,7 +168,7 @@ def checkout():
                 country=country,
                 city=city,
                 houseFlat_number=number )
-
+    session.pop('basket', None)
     return render_template('paymentAcceptedPage.html')
 
 

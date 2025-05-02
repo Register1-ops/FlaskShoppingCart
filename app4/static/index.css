@@ -1,165 +1,125 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    background-color: rgba(1, 155, 255, 0.8);
-    padding: 20px;
-}
-
-.header {
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-}
-
-h1 {
-    color: white;
-    padding: 100px;
-    text-align: center;
-    background: 
-        linear-gradient(rgba(104, 125, 247, 0.2), rgba(71, 8, 8, 0.1)),
-        url('trebleClef.gif') no-repeat center center;
-    background-size: cover;
-    width: fit-content;
-    min-width: 200px;
-    height: auto;
-    border-radius: 10px;
-    margin: 0 auto 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.product-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    padding: 10px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .product {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    padding: 15px;
-    width: 220px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-align: center;
-    flex: 0 0 auto;
-  }  
-
-
-#basketButton {
-    margin-left: 10px;
-    height: 35px;
-    padding: 5px 10px;
-    background-color: white;
-    border: 1px solid #333;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.top-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+    margin: 0; /* Remove default body margin */
+    font-family: Arial, sans-serif; /* Use Arial or fallback to sans-serif */
+    background-color: #f5f5f5; /* Light gray background for contrast */
+    background-size: 120px; /* Set image width to 120px while maintaining aspect ratio */
 }
 
 .headPart {
-    color: white;
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(22, 22, 22, 0.4));
-    padding: 20px;
-    text-align: center;
+    background-color: #2c3e50; /* Dark blue-gray background for the header */
+    padding: 20px; /* Add space inside the header */
+    color: white; /* Set text color to white */
+}
+
+.title-container {
+    display: flex; /* Use flexbox to align children horizontally */
+    align-items: center; /* Vertically align items in the center */
+    justify-content: space-between; /* Spread elements to left and right ends */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+#title {
+    font-size: 50px; /* Large font for the title */
+    margin: 0; /* Remove default margin from the title */
+    background: 
+       url('trebleClef.gif') no-repeat center center;
+       height: 5vh;
+    background-size: cover;
+    padding:100px;
+}
+
+#search {
+    display: flex; /* Arrange search box and button side-by-side */
+    gap: 10px; /* Space between input and button */
+}
+
+#search input{
     font-size: 30px;
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;  /* Centers horizontally */
-    align-items: center;  /* Centers vertically */
-    height: 25vh;  /* Full viewport height */
-
-}
-
-#continueShopping {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: blue;
-    color: white;
-    border: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.paymentPage{
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 25px;
-    background: rgba(119, 167, 215, 0.8);
-}
-
-button{
-    font-size: 20px;
-   
-}
-
-input{
-    font-size: 20px;
-    background-color: rgb(232, 225, 213);
-}
-.individualText p{
-    font-size: 25px;
-}
-
-.basketText p{
-    font-size: 25px;
+#search button{
+    font-size: 30px;
 }
 
 
-#sortByDropDown{
-    padding: 10px;
-    text-align: left;
-}
-
-#sort{
+#basketButton {
+    background-color: #e67e22; /* Bright orange background */
+    border: none; /* Remove default button border */
+    padding: 10px 15px; /* Add spacing inside the button */
+    color: white; /* Set text color to white */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
     font-size: 20px;
 }
 
-.search-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 20vh; /* Full viewport height */
+#dropDown-wrapper {
+    margin-top: 15px; /* Add spacing above the dropdown */
+    padding: 25px;
+    padding-top:100px;
 }
 
-.search-form {
-    display: flex;
-    gap: 10px;
+#sortByDropDown select {
+    padding: 5px; /* Add inner space for dropdown options */
+    border-radius: 4px; /* Slightly rounded corners */
+    font-size: 20px;
 }
 
-.search-form input {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: rgb(232, 225, 213);
+#sortByDropDown  label{
+    font-size: 20px;
 }
 
-.search-form button {
-    padding: 0px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: none;
-    background-color: blue;
-    color: white;
-    cursor: pointer;
+.product-container {
+    display: flex; /* Arrange product cards in a row */
+    flex-wrap: wrap; /* Wrap cards to the next line if needed */
+    gap: 100px; /* Space between cards */
+    justify-content: center; /* Center the grid of products */
+    padding: 20px; /* Add padding around the grid */
+}
+
+.product {
+    background-color: white; /* White background for product cards */
+    border: 1px solid #ccc; /* Light gray border around cards */
+    border-radius: 10px; /* Rounded corners for product cards */
+    padding: 25px; /* Inner space inside each card */
+    width: 250px; /* Fixed width for consistency */
+    text-align: center; /* Center all content inside the card */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Soft drop shadow for depth */
+}
+
+.product h2 {
+    font-size: 30px; /* Medium heading size for product name */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+.product p {
+    font-size: 25px;
+    margin: 5px 0; /* Vertical spacing between paragraphs */
+    padding: 20px;
+}
+
+.product img {
+    margin: 10px 0; /* Vertical spacing around the image */
+    border-radius: 5px; /* Rounded corners on the image */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.product button {
+    background-color: #3498db; /* Bright blue button color */
+    color: white; /* White text on button */
+    padding: 8px 12px; /* Space inside the button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 20px;
+    
+}
+
+.product button:hover {
+    background-color: #2980b9; /* Darker blue on hover for interactivity */
+}
+
+#showingResultFor{
+    padding: 20px;
+    font-size: 30px;
 }

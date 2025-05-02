@@ -9,34 +9,43 @@
 <body>
 
 <div class = headPart>
-    <h1>Music Shop </h1>
 
-    <a href="{{url_for('basketPage')}}"> 
-        <button id = "basketButton">Go to basket</button>
-    </a>
+    <div class="title-container">
 
-    <div class = "search-wrapper">
-        <form method="GET" action="{{ url_for('search') }}">
+        <h1 id="title">Music Shop</h1>
+
+        <form method="GET" action="{{ url_for('search') }}" id="search">
             <input type="text" name="q" placeholder="Search..." >
             <button type="submit">Search</button>
         </form>
+
+        <a href="{{ url_for('basketPage') }}">
+            <button id="basketButton">Go to basket</button>
+        </a>
+
     </div>
 
-    <form method="get" action="{{ url_for('galleryPage') }}" id = "sortByDropDown">
-        <label for="sort">Sort by:</label>
-        <select name="sort" id="sort" onchange="this.form.submit()">
-          <option value="name" {% if sort_by == 'name' %}selected{% endif %}>Name</option>
-          <option value="price" {% if sort_by == 'price' %}selected{% endif %}>Price</option>
-          <option value="impact" {% if sort_by == 'impact' %}selected{% endif %}>Environmental Impact</option>
-        </select>
-    </form>
-      
+
+    <div id="dropDown-wrapper">
+        <form method="get" action="{{ url_for('galleryPage') }}" id = "sortByDropDown">
+            <label for="sort">Sort by:</label>
+            <select name="sort" id="sort" onchange="this.form.submit()">
+                <option value="name" {% if sort_by == 'name' %}selected{% endif %}>Name</option>
+                <option value="price" {% if sort_by == 'price' %}selected{% endif %}>Price</option>
+                <option value="impact" {% if sort_by == 'impact' %}selected{% endif %}>Environmental Impact</option>
+            </select>
+        </form>
+    </div>
+
+
       
 </div>
 
-{% if search_query %}
-  <p>Showing results for "<strong>{{ search_query }}</strong>":</p>
-{% endif %}
+<div id = "showingResultFor">
+    {% if search_query %}
+        <p>Showing results for "<strong>{{ search_query }}</strong>":</p>
+    {% endif %}
+</div>
 
 <div class="product-container">
     {% for item in items %}

@@ -16,7 +16,6 @@ h1 {
     background-size: cover;
     width: fit-content;
     min-width: 200px;
-    height: auto;
     border-radius: 10px;
     margin: 0 auto 20px auto;
     display: flex;
@@ -24,94 +23,26 @@ h1 {
     align-items: center;
 }
 
-.product-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    padding: 10px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .product {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    padding: 15px;
-    width: 220px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-align: center;
-    flex: 0 0 auto;
-  }  
-
-
-#basketButton {
-    margin-left: 10px;
-    height: 35px;
-    padding: 5px 10px;
-    background-color: white;
-    border: 1px solid #333;
-    border-radius: 5px;
-    cursor: pointer;
+.individualText p,
+.basketText p {
+    font-size: 25px;
 }
 
-.top-controls {
-    display: flex;
-    justify-content: space-between;
+button {
+    font-size: 20px;
+    padding: 7px 10px;
+    cursor: pointer;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.headPart {
-    color: white;
-    background: linear-gradient(
-    259deg,
-    #660303 0%,     /* Charcoal black */
-    #2c3e50 40%,    /* Midnight blue */
-    #34495e 50%,    /* Muted steel blue */
-    #2c3e50 60%,    /* Midnight blue again */
-    #0e2d6b 100%    /* Back to black */
-    );
-
-
-    padding: 20px;
-    text-align: center;
-    font-size: 30px;
-}
-
-#title {
-    text-align: left;
-    width: 20%;
-}
-
-#title h1 {
-    margin: 10px;
-    text-align: left;
-}
-
-
-.button-container {
     display: flex;
-    justify-content: center;  /* Centers horizontally */
-    align-items: center;  /* Centers vertically */
-    height: 25vh;  /* Full viewport height */
-
+    justify-content: center;
 }
 
-#continueShopping {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: blue;
-    color: white;
-    border: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+input {
+    font-size: 20px;
+    background-color: rgb(232, 225, 213);
 }
 
-.paymentPage{
+.paymentPage {
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -119,55 +50,44 @@ h1 {
     background: rgba(119, 167, 215, 0.8);
 }
 
-button{
-    font-size: 20px;
-   
-}
-
-input{
-    font-size: 20px;
-    background-color: rgb(232, 225, 213);
-}
-.individualText p{
-    font-size: 25px;
-}
-
-.basketText p{
-    font-size: 25px;
-}
-
-
-.dropDown-wrapper {
+#productInfo{
     display: flex;
-    justify-content: left;
-    align-items: left;
-    height: 20vh; /* Full viewport height */
+    flex-direction: row;
+    align-items: center; /* or center if you prefer centered layout */
+    padding-top: 100px;
 }
 
-#sort {
-    font-size: 20px;
+#priceInfo{
+    padding: 20px;
+    background-color: rgba(227, 230, 234, 0.8);
+    margin: 20px;
 }
 
-#sortByDropDown{
-    font-size: 27px;
+#productParagraph{
+    padding: 50px;
+    background-color: rgba(227, 230, 234, 0.8);
+    margin: 20px;
 }
 
+#scoreInfo{
+    padding: 20px;
+    background-color: rgba(227, 230, 234, 0.8);
+    margin: 20px;
+}
 
-.search-wrapper {
-    display: flex;
+.individualText a > button{
+    align-items: center; /* or center if you prefer centered layout */
     justify-content: center;
-    align-items: center;
-    height: 20vh; /* Full viewport height */
+    justify-items: center;
+    font-size: 50px;
 }
 
-.search-wrapper input{
-    padding: 10px;
-    font-size: 17px;
+.center-screen {
+    display: flex;
+    justify-content: center; /* horizontal center */
+    align-items: center;   
 }
 
-.search-wrapper button{
-    padding: 7px;
-    font-size: 17px;
-    background-color: black;
-    color: white;
+#addToBasketButton{
+    background-color: rgba(95, 220, 137, 0.8);
 }

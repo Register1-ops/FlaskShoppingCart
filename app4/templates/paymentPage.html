@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask CSS Example</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='paymentPage.css') }}">
 </head>
 <body>
     <h1>Payment page</h1>
@@ -25,9 +25,9 @@
     
         <label>Billing Address:</label><br>
         <input type="text" name="postcode" placeholder="Postcode" value = "{{ postcode }}"required><br><br>
-        <input type="text" name="country" placeholder="country" value = "{{ country }}"required><br><br>
-        <input type="text" name="city" placeholder="city" value = "{{ city }}"required><br><br>
-        <input type="text" name="houseFlat_number" placeholder="house/flat number" value = "{{ houseFlat_number }}" required><br><br>
+        <input type="text" name="country" placeholder="Country" value = "{{ country }}"required><br><br>
+        <input type="text" name="city" placeholder="City" value = "{{ city }}"required><br><br>
+        <input type="text" name="houseFlat_number" placeholder="House/Flat number" value = "{{ houseFlat_number }}" required><br><br>
 
 
         <input type="submit" value="Submit Payment">

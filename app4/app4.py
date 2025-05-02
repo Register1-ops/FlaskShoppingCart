@@ -46,8 +46,7 @@ def get_product_by_id(tech_id):
 # Route for the homepage displaying all products
 @app.route('/')
 def galleryPage():
-    sort_by = request.args.get('sort', 'price')  # Default to sorting by name
-    query = request.args.get('sort', '')
+    sort_by = request.args.get('sort', 'name')  # Default to sorting by name
     technologies = get_products()  # Fetching all products from the database
     technologies = get_products()  # Fetch all products from DB
 
@@ -58,7 +57,7 @@ def galleryPage():
     else:
         technologies.sort(key=lambda x: x['name'].lower())  # Default: name
     
-    return render_template('index.html', technologies=technologies, search_query = query, sort_by= sort_by)  # Rendering the homepage template with products
+    return render_template('index.html', technologies=technologies, sort_by= sort_by)  # Rendering the homepage template with products
 
 # Route to add items to the shopping basket
 @app.route('/add_to_basket/<int:techId>')
@@ -212,8 +211,7 @@ def checkExpiryDate(expiry):
 
 @app.route('/search')
 def search():
-    sort_by = request.args.get('sort', 'price')  # Default to sorting by name
-    query = request.args.get('sort', '')
+    query = request.args.get('q', '')
     conn = sqlite3.connect('products.db')
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM products WHERE name LIKE ? OR short_description LIKE ?", 

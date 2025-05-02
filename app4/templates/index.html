@@ -55,7 +55,7 @@
         <p>{{ item[3] }}</p>
         <a href="{{ url_for('individualProductPage', techId=item[0]) }}">
             <img src="{{ url_for('static', filename=item[5]) }}" alt="{{ item[1] }}" width="100">
-        </a><p>Environment score: {{ item[6] }} kg CO2</p>
+        </a><p>Environment score: {{ item[6] }} kg CO<sub>2</sub></p>
         <a href="{{ url_for('add_to_basket', techId=item[0]) }}">
             <button>Add to Basket</button>
         </a>
@@ -72,7 +72,7 @@
         <a href="{{ url_for('individualProductPage', techId=tech.id) }}">
             <img src="{{ url_for('static', filename=tech.image) }}" alt="{{ tech.name }}" width="100">
         </a>
-        <p>Environmental score: {{ tech.environmentScore }}  kg CO2</p>
+        <p>Environmental score: {{ tech.environmentScore }}  kg CO<sub>2</sub></p>
         <a href="{{ url_for('add_to_basket', techId=tech.id) }}">
             <button>Add to Basket</button>
         </a>

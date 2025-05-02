@@ -13,25 +13,28 @@
     <h1>{{ technology[1] }}</h1>
     <br>
     <br>
+    <div class="center-screen">
+        <a href="{{ url_for('add_to_basket', techId=technology[0]) }}">
+            <button id="addToBasketButton">Add to Basket</button>
+        </a>
+    </div>
+    
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <img src="{{ url_for('static', filename=technology[5]) }}" alt="{{ technology[1] }}" width="350">
-    <p><strong>Price:</strong> {{ technology[2] }}</p>
-    <br>
-    <br>
-    <p>{{ technology[4] }}</p>
-    <br>
-    <br>
-    <p>Environmental score: {{ technology[6] }} kg CO2</p>
-    <br>
-    <br>
-    <a href="{{ url_for('add_to_basket', techId=technology[0]) }}">
-        <button>Add to Basket</button>
-    </a>
+    <div id="productInfo">
+        <p id="priceInfo"><strong>Price:</strong> {{ technology[2] }}</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p id="scoreInfo">Environmental score: {{ technology[6] }} kg CO2</p>
+        <br>
+        <br>
+    </div>
+    
+    <p id="productParagraph">{{ technology[4] }} <br><br><img src="{{ url_for('static', filename=technology[5]) }}" alt="{{ technology[1] }}" width="350">
+    </p>
+
+    
 </div>
 </body>
 </html>

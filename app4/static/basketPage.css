@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     min-height: 100vh;
-    background-color: rgba(1, 155, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
 }
 
@@ -24,72 +24,43 @@ h1 {
     align-items: center;
 }
 
-.product-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
+#headPart{
+    background-color: rgb(27, 13, 117);
+    padding: 50px;
+}
+
+.basketText{
+    background-color: rgba(144, 187, 215, 0.8);
+    font-size: 20px;
+    box-shadow:  0 4px 8px rgba(0,0,0,0.2);  /* Horizontal, vertical, blur, opacity */
+    display: inline-block;    /* Keeps it wrapped around the content */
     padding: 10px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .product {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    padding: 15px;
-    width: 220px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-align: center;
-    flex: 0 0 auto;
-  }  
-
-
-#basketButton {
-    margin-left: 10px;
-    height: 35px;
-    padding: 5px 10px;
-    background-color: white;
-    border: 1px solid #333;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.top-controls {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
 }
 
-.headPart {
-    color: white;
-    background: linear-gradient(
-    259deg,
-    #660303 0%,     /* Charcoal black */
-    #2c3e50 40%,    /* Midnight blue */
-    #34495e 50%,    /* Muted steel blue */
-    #2c3e50 60%,    /* Midnight blue again */
-    #0e2d6b 100%    /* Back to black */
-    );
-
-
-    padding: 20px;
-    text-align: center;
+#paymentButton{
     font-size: 30px;
 }
 
-#title {
-    text-align: left;
-    width: 20%;
+.checkout-summary {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* or center if you prefer centered layout */
+    margin-top: 20px;
+    background:rgba(230, 134, 156, 0.8);
+    background-size: contain;
+    padding: 100px;
 }
 
-#title h1 {
-    margin: 10px;
-    text-align: left;
+#totalP{
+    padding: 20px;
+    font-size: 35px;
+}
+
+#environmentScoreP{
+    padding: 20px;
+    font-size: 30px;
 }
 
 
@@ -103,7 +74,7 @@ h1 {
 
 #continueShopping {
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 45px;
     background-color: blue;
     color: white;
     border: 10px;
@@ -111,63 +82,10 @@ h1 {
     cursor: pointer;
 }
 
-.paymentPage{
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 25px;
-    background: rgba(119, 167, 215, 0.8);
-}
-
 button{
     font-size: 20px;
    
 }
 
-input{
-    font-size: 20px;
-    background-color: rgb(232, 225, 213);
-}
-.individualText p{
-    font-size: 25px;
-}
-
-.basketText p{
-    font-size: 25px;
-}
 
 
-.dropDown-wrapper {
-    display: flex;
-    justify-content: left;
-    align-items: left;
-    height: 20vh; /* Full viewport height */
-}
-
-#sort {
-    font-size: 20px;
-}
-
-#sortByDropDown{
-    font-size: 27px;
-}
-
-
-.search-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 20vh; /* Full viewport height */
-}
-
-.search-wrapper input{
-    padding: 10px;
-    font-size: 17px;
-}
-
-.search-wrapper button{
-    padding: 7px;
-    font-size: 17px;
-    background-color: black;
-    color: white;
-}

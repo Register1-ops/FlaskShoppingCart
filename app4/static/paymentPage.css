@@ -1,0 +1,97 @@
+/* Page Background & Base Font */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background-color: rgba(1, 155, 255, 0.8);
+    padding: 20px;
+}
+
+/* Page Title */
+h1 {
+    color: white;
+    padding: 40px;
+    text-align: center;
+    background:
+        linear-gradient(rgba(104,125,247,0.2), rgba(71,8,8,0.1)),
+        url('trebleClef.gif') no-repeat center center;
+    background-size: cover;
+    width: fit-content;
+    border-radius: 10px;
+    margin: 0 auto 30px auto;
+}
+
+/* Main Payment Form Container */
+.paymentPage {
+    max-width: 500px;
+    margin: 0 auto;             /* Center on page */
+    background: rgba(53, 139, 224, 0.8);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Form Elements */
+.paymentPage form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.paymentPage form input[type="text"],
+.paymentPage form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(232,225,213);
+}
+
+/* Submit & Back Buttons */
+.paymentPage form input[type="submit"],
+.paymentPage a > button {
+    display: block;
+    width: 100%;
+    margin-top: 25px;
+    padding: 12px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.paymentPage form input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+}
+
+.paymentPage form input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+.paymentPage a > button {
+    background-color: #e67e22;
+    color: white;
+}
+
+.paymentPage a > button:hover {
+    background-color: #d35400;
+}
+
+/* Flash Messages */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+ul li {
+    background: rgba(255,255,255,0.9);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #333;
+}

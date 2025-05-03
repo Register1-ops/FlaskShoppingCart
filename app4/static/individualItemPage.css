@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     min-height: 100vh;
-    background-color: rgba(1, 155, 255, 0.8);
+    background-color: rgba(197, 224, 242, 0.8);
     padding: 20px;
 }
 
@@ -90,4 +90,31 @@ input {
 
 #addToBasketButton{
     background-color: rgba(95, 220, 137, 0.8);
+}
+
+#reviewList{
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: rgba(215, 23, 225, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); 
+    padding: 50px;
+    font-size: 30px;
+    align-items: center;
+}
+
+#leaveReview{
+    max-width: 750px;
+    margin: 0 auto;
+    background-color: rgba(42, 192, 234, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); 
+    padding: 130px;
+    font-size: 30px;
+}
+
+#rating{
+    font-size: 20px;
+}
+
+textarea{
+    font-size: 25px;
 }

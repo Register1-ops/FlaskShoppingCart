@@ -3,38 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ technology[1] }}</title>
+    <title>{{ product[1] }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='individualItemPage.css') }}">
 
 </head>
 <body>
 <div class = individualText>
     <a href="{{ url_for('galleryPage') }}">← Back to List</a>
-    <h1>{{ technology[1] }}</h1>
+    <h1>{{ product[1] }}</h1>
     <br>
     <br>
     <div class="center-screen">
-        <a href="{{ url_for('add_to_basket', techId=technology[0]) }}">
+        <a href="{{ url_for('add_to_basket', productId=product[0]) }}">
             <button id="addToBasketButton">Add to Basket</button>
         </a>
     </div>
     
     <br>
     <div id="productInfo">
-        <p id="priceInfo"><strong>Price:</strong> {{ technology[2] }}</p>
+        <p id="priceInfo"><strong>Price:</strong> {{ product[2] }}</p>
         <br>
         <br>
         <br>
         <br>
-        <p id="scoreInfo">Environmental score: {{ technology[6] }} kg CO2</p>
+        <p id="scoreInfo">Environmental score: {{ product[6] }} kg CO2</p>
         <br>
         <br>
     </div>
     
-    <p id="productParagraph">{{ technology[4] }} <br><br><img src="{{ url_for('static', filename=technology[5]) }}" alt="{{ technology[1] }}" width="350">
+    <p id="productParagraph">{{ product[4] }} <br><br><img src="{{ url_for('static', filename=product[5]) }}" alt="{{ product[1] }}" width="350">
     </p>
 
+    <div id = "leaveReview">
+        <h2>Leave a Review</h2>
+        <form method="POST">
+            <label for="review">Review:</label><br>
+            <textarea id="review" name="review" rows="4" cols="50" required></textarea><br><br>
+            <label for="rating">Rating:</label><br>
+            <select id="rating" name="rating" required>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select><br><br><br>
+            <input type="submit" value="Submit Review">
+        </form>
+    </div>
+
     
+    <div id = "reviewList">
+        <h2>Customer Reviews</h2><br><br>
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <strong>Rating:</strong> {{ review.rating }} / 5<br>
+                    <p>{{ review.review }}</p>
+                </li>
+                <br>
+                <br>
+            {% endfor %}
+        </ul>
+    </div>
+
 </div>
 </body>
 </html>

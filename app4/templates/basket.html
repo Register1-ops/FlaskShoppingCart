@@ -23,7 +23,7 @@
                 <p><strong>{{ item.name }}  x {{ item_counts[item.name]}}</strong></p>
                 <p>Price: {{ item.price }}</p>
                 <p>Environment score: {{ item.environmentScore }} kg CO<sub>2</sub></p>
-                <a href="{{ url_for('remove_from_basket', techId=item.id) }}">
+                <a href="{{ url_for('remove_from_basket', productId=item.id) }}">
                     <button>Remove</button>
                 </a>
                 

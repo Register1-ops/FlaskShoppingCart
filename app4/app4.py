@@ -29,11 +29,31 @@ def get_products():
     conn.close()  # Closing the database connection
     return products  # Returning the list of products
 
+
+def get_reviews_for_product(productId):
+    conn = sqlite3.connect('reviews_new.db')  # Connecting to the database
+    cursor = conn.cursor()  # Creating a cursor object to execute SQL queries
+
+    reviews = cursor.execute('SELECT review, rating FROM reviews_new WHERE product_id = ?', (productId,)).fetchall()
+    conn.commit()
+    conn.close()
+    return [{'review': row[0], 'rating': row[1]} for row in reviews]
+
+# Add a new review for a product
+def add_review(productId, review, rating):
+    conn = sqlite3.connect('reviews_new.db')  # Connecting to the database
+    cursor = conn.cursor()  # Creating a cursor object to execute SQL queries
+    cursor.execute('INSERT INTO reviews_new (product_id, review, rating) VALUES (?, ?, ?)',
+                 (productId, review, rating))
+    conn.commit()
+    conn.close()
+
+
 # Function to fetch a single product by ID
-def get_product_by_id(tech_id):
+def get_product_by_id(productId):
     conn = sqlite3.connect('products.db')  # Connecting to the database
     cursor = conn.cursor()  # Creating a cursor object
-    cursor.execute("SELECT id, name, price, short_description, long_description, image, environmentScore FROM products WHERE id = ?", (tech_id,))  # Querying a specific product
+    cursor.execute("SELECT id, name, price, short_description, long_description, image, environmentScore FROM products WHERE id = ?", (productId,))  # Querying a specific product
     row = cursor.fetchone()  # Fetching the result
     conn.close()  # Closing the connection
     
@@ -47,29 +67,29 @@ def get_product_by_id(tech_id):
 @app.route('/')
 def galleryPage():
     sort_by = request.args.get('sort', 'name')  # Default to sorting by name
-    technologies = get_products()  # Fetching all products from the database
-    technologies = get_products()  # Fetch all products from DB
+    products = get_products()  # Fetching all products from the database
+
 
     if sort_by == 'price':
-        technologies.sort(key=lambda x: float(x['price'][1:]))  # Remove £ and sort
+        products.sort(key=lambda x: float(x['price'][1:]))  # Remove £ and sort
     elif sort_by == 'impact':
-        technologies.sort(key=lambda x: x['environmentScore'])
+        products.sort(key=lambda x: x['environmentScore'])
     else:
-        technologies.sort(key=lambda x: x['name'].lower())  # Default: name
+        products.sort(key=lambda x: x['name'].lower())  # Default: name
     
-    return render_template('index.html', technologies=technologies, sort_by= sort_by)  # Rendering the homepage template with products
+    return render_template('index.html', products=products, sort_by= sort_by)  # Rendering the homepage template with products
 
 # Route to add items to the shopping basket
-@app.route('/add_to_basket/<int:techId>')
-def add_to_basket(techId):
-    technology = get_product_by_id(techId)  # Fetching product details
-    if not technology:
+@app.route('/add_to_basket/<int:productId>')
+def add_to_basket(productId):
+    product = get_product_by_id(productId)  # Fetching product details
+    if not product:
         return "Product not found", 404  # Returning a 404 error if product not found
 
     if 'basket' not in session:
         session['basket'] = []  # Initializing basket if it doesn't exist
 
-    session['basket'].append(techId)  # Adding product ID to session
+    session['basket'].append(productId)  # Adding product ID to session
     session.modified = True  # Marking session as modified to save changes
     return redirect(url_for('galleryPage'))  # Redirecting to the basket page
 
@@ -79,7 +99,7 @@ def basketPage():
     if 'basket' not in session or len(session['basket']) == 0:
         return render_template('basket.html', basket_items=[], empty=True, itemTotal = 0.00, environmentScore = 0)  # Rendering empty basket page
 
-    basket_items = [get_product_by_id(techId) for techId in session['basket']]  # Fetching product details for items in basket
+    basket_items = [get_product_by_id(productId) for productId in session['basket']]  # Fetching product details for items in basket
     
     # basket_items is a list of items (each with .name, .price, etc.)
     item_counts = Counter([item['name'] for item in basket_items])
@@ -91,32 +111,31 @@ def basketPage():
     return render_template('basket.html', basket_items=basket_items, empty=False, itemTotal = itemTotal, environmentScore = environmentScoreTotal, item_counts = item_counts, unique_items = unique_items)  # Rendering basket page with items
 
 # Route to remove items from the baske
-@app.route('/remove_from_basket/<int:techId>')
-def remove_from_basket(techId):
-    if 'basket' in session and techId in session['basket']:
-        session['basket'].remove(techId)  # Removing product from basket
+@app.route('/remove_from_basket/<int:productId>')
+def remove_from_basket(productId):
+    if 'basket' in session and productId in session['basket']:
+        session['basket'].remove(productId)  # Removing product from basket
         session.modified = True  # Marking session as modified to save changes
     return redirect(url_for('basketPage'))  # Redirecting to the basket page
 
 
-@app.route('/individualProduct/<int:techId>')
-def individualProductPage(techId):
+@app.route('/individualProduct/<int:productId>', methods=['GET', 'POST'])
+def individualProductPage(productId):
     conn = sqlite3.connect('products.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM products WHERE id=?', (techId,))
-    row = cursor.fetchone()
+    cursor.execute('SELECT * FROM products WHERE id=?', (productId,))
+    rowProduct = cursor.fetchone()
     conn.close()
 
-    technology = {
-    'id': row[0],
-    'name': row[1],
-    'price': row[2],
-    'description': row[3],
-    'image': row[4],
-    'environmentScore': row[5]  
-    }
+    reviews = get_reviews_for_product(productId)
+    
+    if request.method == 'POST':
+        review = request.form['review']
+        rating = int(request.form['rating'])
+        add_review(productId, review, rating)
 
-    return render_template('individualProduct.html', technology = row)
+
+    return render_template('individualProduct.html', product = rowProduct, reviews=reviews)
 
 
 @app.route('/paymentPage')

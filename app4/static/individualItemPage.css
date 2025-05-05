@@ -7,6 +7,7 @@ body {
 }
 
 h1 {
+    font-size: 50px;
     color: white;
     padding: 100px;
     text-align: center;
@@ -51,10 +52,15 @@ input {
 }
 
 #productInfo{
+    
     display: flex;
     flex-direction: row;
     align-items: center; /* or center if you prefer centered layout */
     padding-top: 100px;
+}
+
+#productInfo p{
+    font-size: 35px;
 }
 
 #priceInfo{
@@ -67,6 +73,7 @@ input {
     padding: 50px;
     background-color: rgba(227, 230, 234, 0.8);
     margin: 20px;
+    font-size: 35px;
 }
 
 #scoreInfo{
@@ -104,7 +111,7 @@ input {
 
 #leaveReview{
     max-width: 750px;
-    margin: 0 auto;
+    margin: 40px auto;
     background-color: rgba(42, 192, 234, 0.2);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); 
     padding: 130px;
@@ -117,4 +124,8 @@ input {
 
 textarea{
     font-size: 25px;
+}
+
+#backToList{
+    font-size: 40px;
 }

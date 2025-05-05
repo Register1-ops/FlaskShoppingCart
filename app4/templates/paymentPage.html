@@ -9,48 +9,53 @@
 <body>
     <h1>Payment page</h1>
     <!-- templates/payment.html -->
-<div class = "paymentPage">
-    <form action="/checkout" method="POST">
-        <label>Name on Card:</label><br>
-        <input type="text" name="name_on_card" value = "{{ name_on_card }}" required><br><br>
-    
-        <label>Card Number:</label><br>
-        <input type="text" name="card_number" value = "{{ card_number }}" required><br><br>
-    
-        <label>Expiry Date (MM/YY):</label><br>
-        <input type="text" name="expiry" value = "{{ expiry }}" required><br><br>
-    
-        <label>CVV:</label><br>
-        <input type="password" name="cvv" value = "{{ cvv }}" required><br><br>
-    
-        <label>Billing Address:</label><br>
-        <input type="text" name="postcode" placeholder="Postcode" value = "{{ postcode }}"required><br><br>
-        <input type="text" name="country" placeholder="Country" value = "{{ country }}"required><br><br>
-        <input type="text" name="city" placeholder="City" value = "{{ city }}"required><br><br>
-        <input type="text" name="houseFlat_number" placeholder="House/Flat number" value = "{{ houseFlat_number }}" required><br><br>
 
 
-        <input type="submit" value="Submit Payment">
-    </form>
+  <div class = "paymentPage">
+      <form action="/checkout" method="POST">
+          <label>Name on Card:</label><br>
+          <input type="text" name="name_on_card" value = "{{ name_on_card }}" required><br><br>
+      
+          <label>Card Number:</label><br>
+          <input type="text" name="card_number" value = "{{ card_number }}" required><br><br>
+      
+          <label>Expiry Date (MM/YY):</label><br>
+          <input type="text" name="expiry" value = "{{ expiry }}" required><br><br>
+      
+          <label>CVV:</label><br>
+          <input type="text" name="cvv" value = "{{ cvv }}" required><br><br>
+      
+          <label>Billing Address:</label><br>
+          <input type="text" name="postcode" placeholder="Postcode" value = "{{ postcode }}"required><br><br>
+          <input type="text" name="country" placeholder="Country" value = "{{ country }}"required><br><br>
+          <input type="text" name="city" placeholder="City" value = "{{ city }}"required><br><br>
+          <input type="text" name="houseFlat_number" placeholder="House/Flat number" value = "{{ houseFlat_number }}" required><br><br>
 
-    <a href="{{ url_for('galleryPage') }}">
-        <button>Go back to shop</button>
-    </a>
-    
-</div>
+          <div id = "errors">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <br>
 
+            <br>
+            <br>
+            <p>Error with form</p>
+              <ul>
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endwith %}
+          </div>
 
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul>
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+          <input type="submit" value="Submit Payment">
+      </form>
 
-  
+      <a href="{{ url_for('galleryPage') }}">
+          <button>Go back to shop</button>
+      </a>
+      
+  </div>
 
 </body>
 </html>

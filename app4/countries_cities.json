@@ -1,0 +1,72 @@
+{
+    "United States": [
+        "New York",
+        "Los Angeles",
+        "Chicago",
+        "Houston",
+        "Phoenix"
+    ],
+    "United Kingdom": [
+        "London",
+        "Birmingham",
+        "Manchester",
+        "Glasgow",
+        "Liverpool"
+    ],
+    "India": [
+        "Mumbai",
+        "Delhi",
+        "Bangalore",
+        "Hyderabad",
+        "Ahmedabad"
+    ],
+    "Canada": [
+        "Toronto",
+        "Vancouver",
+        "Montreal",
+        "Calgary",
+        "Ottawa"
+    ],
+    "Australia": [
+        "Sydney",
+        "Melbourne",
+        "Brisbane",
+        "Perth",
+        "Adelaide"
+    ],
+    "Germany": [
+        "Berlin",
+        "Hamburg",
+        "Munich",
+        "Cologne",
+        "Frankfurt"
+    ],
+    "France": [
+        "Paris",
+        "Marseille",
+        "Lyon",
+        "Toulouse",
+        "Nice"
+    ],
+    "Brazil": [
+        "São Paulo",
+        "Rio de Janeiro",
+        "Brasília",
+        "Salvador",
+        "Fortaleza"
+    ],
+    "Japan": [
+        "Tokyo",
+        "Yokohama",
+        "Osaka",
+        "Nagoya",
+        "Sapporo"
+    ],
+    "South Africa": [
+        "Johannesburg",
+        "Cape Town",
+        "Durban",
+        "Pretoria",
+        "Port Elizabeth"
+    ]
+}

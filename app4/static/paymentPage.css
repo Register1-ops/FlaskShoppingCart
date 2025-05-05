@@ -3,8 +3,12 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     min-height: 100vh;
-    background-color: rgba(1, 155, 255, 0.8);
+    background-color: rgba(159, 204, 234, 0.8);
     padding: 20px;
+}
+
+#errors{
+    font-size: 30px;
 }
 
 /* Page Title */
@@ -19,11 +23,12 @@ h1 {
     width: fit-content;
     border-radius: 10px;
     margin: 0 auto 30px auto;
+    font-size: 75px;
 }
 
 /* Main Payment Form Container */
 .paymentPage {
-    max-width: 500px;
+    max-width: 1000px;
     margin: 0 auto;             /* Center on page */
     background: rgba(53, 139, 224, 0.8);
     padding: 50px;

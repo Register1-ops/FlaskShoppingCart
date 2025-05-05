@@ -1,3 +1,5 @@
+#add AJAX hover if possible
+
 from collections import Counter
 from flask import Flask, flash, render_template, request, redirect, url_for, session  # Importing necessary Flask modules
 from flask_wtf import FlaskForm  # Importing Flask-WTF for form handling
@@ -7,12 +9,16 @@ from flask_bootstrap import Bootstrap  # Importing Bootstrap for styling
 import sqlite3  # Importing SQLite for database operations
 from datetime import datetime
 import re
-import time 
+import json
 
 app = Flask(__name__)  # Creating a Flask web application instance
 bootstrap = Bootstrap(app)  # Initializing Flask-Bootstrap for UI styling
 app.config['SECRET_KEY'] = "secret_key"  # Setting a secret key for session security
 
+
+with open('countries_cities.json', 'r', encoding='utf-8') as f:
+    country_city_data = json.load(f)
+        
 
 
 # Function to fetch all products from the SQLite database
@@ -142,6 +148,14 @@ def individualProductPage(productId):
 def paymentPageFunction():
     return render_template('paymentPage.html')
 
+def is_valid_location(country, city):
+    country = country.strip().title()
+    city = city.strip().title()
+    cities = country_city_data.get(country)
+    if cities and city in cities:
+        return True
+    return False
+
 pattern = re.compile(r'^[A-Za-z]{1,2}\d{1,2}[A-Za-z]?\s?\d[A-Za-z]{2}$')
 @app.route("/checkout", methods=["GET", "POST"])
 def checkout():
@@ -157,6 +171,10 @@ def checkout():
     # Basic validation
     errors = []
 
+    
+    if not is_valid_location(country, city):
+        errors.append("Countries or cities is incorrect")
+    
     if not card_number.isdigit() or len(card_number) != 16:
         errors.append("Card number must be 16 digits.")
 

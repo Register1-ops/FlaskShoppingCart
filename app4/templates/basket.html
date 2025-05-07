@@ -3,55 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask CSS Example</title>
+    <title>Shopping Basket</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='basketPage.css') }}">
 </head>
 <body>
-<div id="headPart">
+
+<header id="headPart">
     <h1>Shopping Basket</h1>
-</div>
-<br>
-<br>
+</header>
 
-<div class = basketText>
-{% if empty %}
-    <p>Your basket is empty!</p>
-{% else %}
-    <ul>
-        {% for item in unique_items %}
-            <li>
-                <p><strong>{{ item.name }}  x {{ item_counts[item.name]}}</strong></p>
-                <p>Price: {{ item.price }}</p>
-                <p>Environment score: {{ item.environmentScore }} kg CO<sub>2</sub></p>
-                <a href="{{ url_for('remove_from_basket', productId=item.id) }}">
-                    <button>Remove</button>
-                </a>
-                
-            </li>
-            <br>
-            <br>
-        {% endfor %}
-    </ul>
-    
-{%endif%}
+<main id="basketAndPayment">
+    <section class="basketText">
+        {% if empty %}
+            <p>Your basket is empty!</p>
+        {% else %}
+            <ul>
+                {% for item in unique_items %}
+                <li class="basket-item">
+                    <p><strong>{{ item.name }} × {{ item_counts[item.name] }}</strong></p>
+                    <p>Price: £{{ item.price }}</p>
+                    <p>Environment score: {{ item.environmentScore }} kg CO<sub>2</sub></p>
+                    <a href="{{ url_for('individualProductPage', productId=item.id) }}">
+                        <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}" width="100">
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </section>
 
+    <aside class="checkout-summary">
+        <p id="totalP"><strong>Total:</strong> £{{ itemTotal }}</p>
+        <p id="environmentScoreP"><strong>Environment score:</strong> {{ environmentScore }} kg CO<sub>2</sub></p>
+        {% if not empty %}
+            <a href="{{ url_for('paymentPageFunction') }}">
+                <button id="paymentButton">Proceed to Payment</button>
+            </a>
+        {% endif %}
+    </aside>
+</main>
+
+<div class="button-container">
+    <a href="{{ url_for('galleryPage') }}">
+        <button id="continueShopping">Continue Shopping</button>
+    </a>
 </div>
 
-<div class="checkout-summary">
-    <p id="totalP"><strong>Total: </strong> £ {{ itemTotal }}</p>
-    <p id="environmentScoreP"><strong>Environment score: </strong>{{ environmentScore }} kg CO<sub>2</sub></p>
-    {% if empty %}
-        <p></p>
-    {% else %}
-        <a href="{{ url_for('paymentPageFunction') }}">
-            <button id="paymentButton">Payment page</button>
-        </a>
-    {% endif %}
-</div>
-<a href="{{ url_for('galleryPage') }}">
-    <div class="button-container">
-        <button id = "continueShopping">Continue Shopping</button>
-    </div>
-</a>
 </body>
 </html>
